@@ -7,18 +7,39 @@ and open the template in the editor.
 <html>
     <head>
         <title>Palabras</title>
+        <link type="text/css" rel="stylesheet" href="css/basic.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div id="container1">
+        <div id="container1" class="center">
+            <label>Titulo de la Sopa: </label><input type='text' id='titulo'/><br/>
+             <label>Descripcion: </label><input type='text' id='descripcion'/><br/>
             <label>Numero de palabras: </label>
             <input type="number" id="numero" name="numero" min="1">
-            <br>
-            <button type="button" onclick="crearMatriz();">Crear</button>
-        </div>
+            <button type="button" onclick="mostrar();">Escribir palabras</button>
         
-        <div id="table"></div>
+            <br/>
+        
+        <div id="mostrar"></div>
+        
+        
+            <br>
+             <div id="generar"></div>
+            
+        </div>
+        <div id="container2" class="center">
+            
+        <div id="sopaT">  
+            
+        </div><br>
+        <div id="sopaD">  
+             
+        </div><br>
+        <div id="table">  
+        </div>
+            
+             </div>
         
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/jquery.min.js"></script>
