@@ -1,7 +1,19 @@
 var palabras = new Array();
 var matriz;
 var max;
-
+function mostrar(){
+    var cantidad = parseInt(document.getElementById("numero").value);
+                var textHTML = "";
+                var buttonHTML = "";
+                for(i=0; i < cantidad; i++){
+                    textHTML += "<input type='text' id='palabra" + i + "'/><br/>";
+                }
+                buttonHTML+="<button type='button' onclick='crearMatriz();'>Crear</button>";
+                document.getElementById("mostrar").innerHTML = textHTML;
+                document.getElementById("generar").innerHTML = buttonHTML;
+                
+                
+}
 function crearMatriz() {
     var k = 0;
     var i = 0;
@@ -10,7 +22,8 @@ function crearMatriz() {
     
     //leer palabras
     for(var con=0;con<n;con++){
-        palabras[con]=prompt("Escriba la palabra","");
+        var idPal='#palabra'+con;
+        palabras[con]=$(idPal).val();
         //alert(palabras[con].length);
         if(k<palabras[con].length){
             k=palabras[con].length;
@@ -119,7 +132,19 @@ function crearMatriz() {
     $("#container1").hide();
     $("#container2").show();
 
+    mostrarTitulo();
     mostrarTabla();
+}
+function mostrarTitulo(){
+    var t=$("#titulo").val();;
+     var tituloHTML="";
+     tituloHTML+="<label>"+t+"</label><br>";
+    document.getElementById("sopaT").innerHTML = tituloHTML;
+    
+    var d=$("#descripcion").val();;
+     var descripcionHTML="";
+     descripcionHTML+="<label>"+d+"</label><br>";
+    document.getElementById("sopaD").innerHTML = descripcionHTML;
 }
 
 function acomodarPalabra(palabra){
