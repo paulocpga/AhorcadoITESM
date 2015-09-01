@@ -1,8 +1,6 @@
 var palabras = new Array();
 var matriz;
-var palabrachars = new Array();
 var max;
-var palabra;
 
 function crearMatriz() {
     var k = 0;
@@ -36,25 +34,21 @@ function crearMatriz() {
             matriz[i][j] = 0;
         }
     }
-    
+        
     //separar palabra en caracteres
     for(var j=0; j<palabras.length;j++){    
-        palabra = $.trim(palabras[j]); 
-        
-        //Parte la palabra
-        for(var i=0; i<palabra.length; i++){
-            palabrachars[i] = palabra.charAt(i).toUpperCase();
-        }
+        var palabra = $.trim(palabras[j]); 
+  
         
         /*
         for(var i=0; i<palabra.length; i++){
             alert(palabrachars[i]);
         }*/
         
-        acomodarPalabra();
-        //var x = Math.floor(Math.random() * max-1) + 1;  
-        //var y = Math.floor(Math.random() * max-1) + 1;   
-        /*var x = 3;
+        acomodarPalabra(palabra);
+        /*var x = Math.floor(Math.random() * max-1) + 1;  
+        var y = Math.floor(Math.random() * max-1) + 1;   
+        var x = 3;
         var y = 2;
         
         //var id = Math.floor(Math.random() * 8) + 1;
@@ -128,30 +122,41 @@ function crearMatriz() {
     mostrarTabla();
 }
 
-function acomodarPalabra(){
-    var flag = 0;
+function acomodarPalabra(palabra){
+    var palabrachars = new Array();
+    var flag = 0, tam = 0;
+    
+    //Parte la palabra
+    for(var i=0; i<palabra.length; i++){
+        palabrachars[i] = palabra.charAt(i).toUpperCase();
+    }
+    
     for(var x = 0; x < max; x++){ //posición x
         for(var y = 0; y < max; y++){ //posición y
-            for(var k = 1; k <= 8; k++){ //8 posibles orientaciones de la palabra
+            //for(var k = 1; k <= 8; k++){ //8 posibles orientaciones de la palabra
                 //caso x+=1;                    
                 //Verifica que la palabra quepa y si hay espacio vacios,
                 //if true, dibuja la palabra hacia abajo, if false, nada
-                if(flag === 0){
-                    if(max - x >= palabra.length){
+                if(flag === 0 && max - x >= palabra.length){
+                    for(var i = 0; i < palabra.length; i++){
+                        if(matriz[x+i][y]===0){
+                            tam += 1;
+                        }
+                    }         
+                    if(tam === palabra.length){
                         for(var i = 0; i < palabra.length; i++){
                             if(matriz[x+i][y]===0){
                                 matriz[x+i][y] = palabrachars[i];
                             }
                         }
-                        flag = 1;
-                    }else{
-                        
                     }
-                }    
-            }
+                    flag = 1;
+                }else{
+                    
+                }  
+            //}
         }        
     }
-
 }
 
 function mostrarTabla(){
