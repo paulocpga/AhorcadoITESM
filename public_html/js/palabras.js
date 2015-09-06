@@ -61,6 +61,8 @@ function crearMatriz() {
     
     //llanarLetrasAleatorias();
     mostrarTitulo();
+    mostrarLista();
+    mostrarLista2();
     mostrarTabla();
 }
 
@@ -75,7 +77,21 @@ function mostrarTitulo(){
     descripcionHTML+="<label>"+d+"</label><br>";
     document.getElementById("sopaD").innerHTML = descripcionHTML;
 }
+function mostrarLista(){
+     var listaHTML="";
+     for(var i=0;i<palabras.length/2;i++){
+         listaHTML+="<label>"+palabras[i]+"</label><br>";
+     }
+     document.getElementById("lista").innerHTML = listaHTML;
+}
 
+function mostrarLista2(){
+     var listaHTML="";
+     for(var i=palabras.length/2;i<palabras.length;i++){
+         listaHTML+="<label>"+palabras[i]+"</label><br>";
+     }
+     document.getElementById("lista2").innerHTML = listaHTML;
+}
 function acomodarPalabra(palabra){
     var palabrachars = new Array();
     //var flag = 0;
