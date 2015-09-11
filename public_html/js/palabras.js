@@ -1,4 +1,4 @@
-var palabras = new Array();
+    var palabras = new Array();
 var matriz;
 var max;
 
@@ -59,39 +59,32 @@ function crearMatriz() {
     $("#container1").hide();
     $("#container2").show();
     
-    //llanarLetrasAleatorias();
+    llenarLetrasAleatorias();
     mostrarTitulo();
     mostrarLista();
-    mostrarLista2();
     mostrarTabla();
 }
 
 function mostrarTitulo(){
     var t=$("#titulo").val();;
     var tituloHTML="";
-    tituloHTML+="<label>"+t+"</label><br>";
+    tituloHTML+="<h1>"+t+"</h1><br>";
     document.getElementById("sopaT").innerHTML = tituloHTML;
     
     var d=$("#descripcion").val();;
     var descripcionHTML="";
-    descripcionHTML+="<label>"+d+"</label><br>";
+    descripcionHTML+="<label>"+d+"</label><br><br>";
     document.getElementById("sopaD").innerHTML = descripcionHTML;
 }
+
 function mostrarLista(){
      var listaHTML="";
-     for(var i=0;i<palabras.length/2;i++){
-         listaHTML+="<label>"+palabras[i]+"</label><br>";
+     for(var i=0;i<palabras.length;i++){
+         listaHTML+="<p>"+palabras[i]+"</p>";
      }
      document.getElementById("lista").innerHTML = listaHTML;
 }
 
-function mostrarLista2(){
-     var listaHTML="";
-     for(var i=palabras.length/2;i<palabras.length;i++){
-         listaHTML+="<label>"+palabras[i]+"</label><br>";
-     }
-     document.getElementById("lista2").innerHTML = listaHTML;
-}
 function acomodarPalabra(palabra){
     var palabrachars = new Array();
     //var flag = 0;
@@ -232,19 +225,17 @@ function acomodarPalabra(palabra){
 
 function mostrarTabla(){
     //Create a HTML Table element.
-    var table = $("<table />");
-    //table[0].border = "1";
+    var table = $("<table align='center'> </table>");
 
     //Add the data rows.
     for (var i = 0; i < max; i++) {
         row = $(table[0].insertRow(-1));
         for (var j = 0; j < max; j++) {
-            var cell = $("<td></td>");
-            cell.html(matriz[i][j]);
+            var cell = $("<td><input id='"+(i+1)+""+j+"' type='submit' class='letraSopa' value='"+matriz[i][j]+"' onClick='seleccionarLetra("+(i+1)+""+j+")'></input></td>");
             row.append(cell);
         }
     }
-
+    
     var dvTable = $("#table");
     dvTable.html("");
     dvTable.append(table);
@@ -260,4 +251,10 @@ function llenarLetrasAleatorias(){
             }
         }
     }
+}
+
+function seleccionarLetra(id){
+    var boton = document.getElementById(id);
+    //var letra = boton.value;
+    boton.style.backgroundColor = "#FF0000";
 }
