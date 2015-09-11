@@ -8,58 +8,121 @@ and open the template in the editor.
     <head>
         <title>Palabras</title>
         <link type="text/css" rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="css/bootstrap/style.css">
        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div id="container1">
-            <div class="row">
-                <div class="col-md-4"> </div>
-                <div class="col-md-4"><label>Titulo de la Sopa: </label><input type='text' id='titulo'/></div>
-                <div class="col-md-4"> </div>   
-            </div>  
             
-            <div class="row">
-                <div class="col-md-4"> </div>
-                <div class="col-md-4"> </div>
-                <div class="col-md-4"> </div>   
-            </div> 
-            
-            <div class="row">
-                <div class="col-md-4"> </div>
-                <div class="col-md-4"> <label>Descripcion: </label><input type='text' id='descripcion'/></div>
-                <div class="col-md-4"> </div>   
-            </div> 
-            
-            <div class="row">
-                <div class="col-md-4"> </div>
-                <div class="col-md-4"> </div>
-                <div class="col-md-4"> </div>   
-            </div> 
-            
-            <div class="row">
-                <div class="col-md-4"> </div>
-                <div class="col-md-4"> <label>Numero de palabras: </label>
-            <input type="number" id="numero" name="numero" min="1">
-            <button type="button" onclick="mostrar();">Escribir palabras</button></div>
-                <div class="col-md-4"> </div>   
-            </div>  
-            
-            <div class="row">
-                <div class="col-md-4"> </div>
-                <div class="col-md-4" id="mostrar"> </div>
-                <div class="col-md-4"> </div>   
-            </div> 
+            <div id="titulo1">
+                <h1>CREA TU SOPA</h1>
+            </div>            
+            <div id="contenido1">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Titulo de la Sopa: </label></div>
+                     <div class="col-md-4">
+                        <input type='text' id='titulo'/></div>
+                      <div class="col-md-4">
+                        <img src="img/sopa.png" alt="prueba"/>
+                    </div>  
+                    </div>
+                <div class="row">
+                    <div class="col-md-4"> <label>Descripcion: </label></div>
+                    <div class="col-md-4"> <input type='text' id='descripcion'/></div>
+                    <div class="col-md-4"> </div>   
+                </div> 
+                <div class="row">
+                    <div class="col-md-12"><br> </div>                  
+                </div> 
+                <div class="row">
+                    <div class="col-md-12"><br> </div>                  
+                </div> 
+                <div class="row">
+                    <div class="col-md-4"><label>Numero de palabras: </label> </div>
+                    <div class="col-md-4"> 
+                <input type="number" id="numero" name="numero" min="1">
+                </div>
+                    <div class="col-md-4"> 
+                    <img src="img/sopa2.png" alt="prueba"/>
+                    </div>   
+                </div> 
+                
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"><button type="button" class="ampliar" onclick="mostrar();">Escribir palabras</button> </div>
+                    <div class="col-md-4"> </div>   
+                </div> 
+                <div class="row">
+                    <div class="col-md-12"><br> </div>                  
+                </div> 
+                <div class="row">
+                    <div class="col-md-12"><br> </div>                  
+                </div> 
+                <div class="row">
+                    <div class="col-md-4"> </div>
+                    <div class="col-md-4" id="mostrar"> </div>
+                    <div class="col-md-4"> </div>   
+                </div> 
+                <div class="row">
+                    <div class="col-md-12"><br> </div>                  
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4"> </div>
+                    <div class="col-md-4" id="generar"> </div>
+                    <div class="col-md-4"> </div>   
+                </div> 
+                
+                </div>
+                
+                <!--<div class="row">
+                    <div class="col-md-2"> </div>
+                    <div class="col-md-8">
+                        <label>Titulo de la Sopa: </label>
+                        <input type='text' id='titulo'/></div>
+                    <div class="col-md-2"> </div>   
+                </div>  
+
+                <div class="row">
+                    <div class="col-md-12"><br> </div>                  
+                </div> 
+
+                <div class="row">
+                    <div class="col-md-4"> </div>
+                    <div class="col-md-4"> <label>Descripcion: </label><input type='text' id='descripcion'/></div>
+                    <div class="col-md-4"> </div>   
+                </div> 
+
+                <div class="row">
+                    <div class="col-md-12"><br> </div>
+
+                </div> 
+
+                <div class="row">
+                    <div class="col-md-4"> </div>
+                    <div class="col-md-4"> <label>Numero de palabras: </label>
+                <input type="number" id="numero" name="numero" min="1">
+                <button type="button" onclick="mostrar();">Escribir palabras</button></div>
+                    <div class="col-md-4"> </div>   
+                </div>  
+
+                <div class="row">
+                    <div class="col-md-4"> </div>
+                    <div class="col-md-4" id="mostrar"> </div>
+                    <div class="col-md-4"> </div>   
+                </div> 
+
+                <div class="row">
+                    <div class="col-md-4"> </div>
+                    <div class="col-md-4" id="generar"> </div>
+                    <div class="col-md-4"> </div>   
+                </div> -->
+            </div>
         
-            <div class="row">
-                <div class="col-md-4"> </div>
-                <div class="col-md-4" id="generar"> </div>
-                <div class="col-md-4"> </div>   
-            </div> 
-   
-            
-        </div>
+        
         <div id="container2" class="center">
             
             <div class="row">

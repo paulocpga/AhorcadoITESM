@@ -8,8 +8,74 @@ and open the template in the editor.
     Author     : Paulo
 */
 
+
+
+
+@media only screen and (min-width : 992px) {
 h1{
     text-align: center;
     font-size: 55px;
     font-family: Cooper Black;
 } 
+
+#container1{
+    padding: 0;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#titulo1{
+    margin: 5% 5% 5% 0;
+}
+
+#contenido1{
+    width: 100%;
+    //margin-left: 15%;
+    //margin-right:15%;
+    border: 10px solid blue;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+button.ampliar{
+    display: inline-block;
+   width: 100%; 
+}
+//*
+label{
+    padding: 15% 20% 10% 10%;
+}//*/
+}
+
+ /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+button.ampliar{
+    display: inline-block;
+   width: 20%; 
+}
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+        h1{
+    text-align: center;
+    font-size: 55px;
+    font-family: Cooper Black;
+} 
+
+#container1{
+    padding: 0;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#titulo1{
+    margin: 5% 5% 5% 0;
+}
+button.ampliar{
+    display: inline-block;
+   width: 100%; 
+}
+    }
