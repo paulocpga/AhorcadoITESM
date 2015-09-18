@@ -1,103 +1,70 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Palabras</title>
-        <link type="text/css" rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-        <link type="text/css" rel="stylesheet" href="css/bootstrap/style.css">
-       
+        <title>Sopa de Letras</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/styles_sopa.css" rel="stylesheet" type="text/css"/>        
     </head>
     <body>
         <div id="container1">
-            
-            <div id="titulo1">
-                <h1>CREA TU SOPA</h1>
-            </div>            
-            <div id="contenido1">
+            <h1>CREA TU SOPA</h1>          
+            <br><br>    
+            <div id="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <label>Titulo de la Sopa: </label></div>
-                     <div class="col-md-4">
-                        <input type='text' id='titulo'/></div>
-                      <div class="col-md-4">
-                        <img src="img/sopa.png" alt="prueba"/>
-                    </div>  
+                    <div class="col-sm-9 col-md-9">
+                        <form>
+                            <label>TÍTULO</label>
+                            <input type="text" id="titulo" required>
+                            <br><br><br>
+                            <label>DESCRIPCIÓN</label>
+                            <input type="text" id="descripcion" required>
+                            <br><br><br><br>
+                            <label>NÚMERO DE PALABRAS</label>
+                            <input type="number" id="numero" name="numero" min="1" max="15" required
+                            onKeyUp="if(this.value>15){this.value='15';}else if(this.value<1){this.value='1';}">
+                            <input type="button" id="check" onclick="mostrar();" value="Insertar">
+                        </form>
                     </div>
-                <div class="row">
-                    <div class="col-md-4"> <label>Descripcion: </label></div>
-                    <div class="col-md-4"> <input type='text' id='descripcion'/></div>
-                    <div class="col-md-4"> </div>   
-                </div> 
-                <div class="row">
-                    <div class="col-md-12"><br> </div>                  
-                </div> 
-                <div class="row">
-                    <div class="col-md-12"><br> </div>                  
-                </div> 
-                <div class="row">
-                    <div class="col-md-4"><label>Numero de palabras: </label> </div>
-                    <div class="col-md-4"> 
-                <input type="number" id="numero" name="numero" min="1">
-                </div>
-                    <div class="col-md-4"> 
-                    <img src="img/sopa2.png" alt="prueba"/>
-                    </div>   
-                </div> 
-                
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4"><button type="button" class="ampliar" onclick="mostrar();">Escribir palabras</button> </div>
-                    <div class="col-md-4"> </div>   
-                </div> 
-                <div class="row">
-                    <div class="col-md-12"><br> </div>                  
-                </div> 
-                <div class="row">
-                    <div class="col-md-12"><br> </div>                  
-                </div> 
-                <div class="row">
-                    <div class="col-md-4"> </div>
-                    <div class="col-md-4" id="mostrar"> </div>
-                    <div class="col-md-4"> </div>   
-                </div> 
-                <div class="row">
-                    <div class="col-md-12"><br> </div>                  
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-4"> </div>
-                    <div class="col-md-4" id="generar"> </div>
-                    <div class="col-md-4"> </div>   
-                </div> 
-                
-                </div>
-                
-               
+                    <div class="col-sm-3 col-md-3">
+                        <img src="img/sopa2.png" alt="prueba" id="sopa2"/>
+                    </div> 
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12" id="mostrar"> </div>
+                    </div>                 
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12" id="generar"> </div>
+                    </div>           
+                </div>    
             </div>
+        </div>
         
-       <div id="container2">
+        <div id="container2" style="display:none">
             <div class="row">
-                <div class="col-lg-12" id="sopaT"></div>
+                <div class="col-md-12 col-sm-12" id="sopaT"></div>
             </div> 
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-7" id="table"></div>
-                <div class="col-md-3" id="sopaD"></div>
-                <div class="col-md-3" id="lista"></div>
+                <div class="col-md-12 col-sm-12" id="sopaD"></div>
+            </div>            
+            <div class="row">
+                <div class="col-md-1 col-sm-1"></div>
+                <!--<div class="col-md-2 col-sm-2" id="lista2"></div>-->
+                <div class="col-md-7 col-sm-7" id="table"></div> 
+                <div class="col-md-1 col-sm-1"></div>
+                <div class="col-md-2 col-sm-2" id="lista"></div>   
+                <div class="col-md-1 col-sm-1"></div>
             </div>
-            <!--<div class="row">
-                <div class="col-md-2" id="lista2"> </div>
-            </div>-->
-
+            <br><br>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <button id="verificar" onclick="verifica()"><span class="glyphicon glyphicon-check"></span></button>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
         </div>
-
-
         
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/jquery.min.js"></script>
