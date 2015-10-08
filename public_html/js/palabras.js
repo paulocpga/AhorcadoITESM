@@ -1,14 +1,15 @@
 var palabras = new Array();
 var palabras2 = new Array();
-var matriz;
-var max;
 var palabraVerifica = new Array();
 var letraID = new Array();
+var aux = 0;
+var gana= 0;
+var blanca= 0;
+var juega= 0;
+var matriz,max;
 var palabra="";
-var aux=0;
-var gana=0;
-var blanca=0;
-var juega=0;
+var matrizPos=new Array();
+
 
 function mostrar(){
     var cantidad = parseInt(document.getElementById("numero").value);
@@ -246,7 +247,7 @@ function mostrarTabla(){
     for (var i = 0; i < max; i++) {
         row = $(table[0].insertRow(-1));
         for (var j = 0; j < max; j++) {
-            var cell = $("<td><input id='"+(i+1)+""+j+"' type='submit' class='btn' value='"+matriz[i][j]+"' onClick='seleccionarLetra("+(i+1)+""+j+")'></input></td>");
+            var cell = $("<td><input id='"+(j+1)+""+(i+1)+"' type='submit' class='btn' value='"+matriz[i][j]+"' onClick='seleccionarLetra("+(j+1)+""+(i+1)+")'></input></td>");
             row.append(cell);
         }
     }
@@ -254,6 +255,7 @@ function mostrarTabla(){
     var dvTable = $("#table");
     dvTable.html("");
     dvTable.append(table);
+    cercano();
 }
 
 function llenarLetrasAleatorias(){
@@ -276,7 +278,6 @@ function seleccionarLetra(id){
         letraID[aux]=id;
         palabraVerifica[aux]=boton.value;
         palabra+=palabraVerifica[aux];
-        letraID.splice(id,1);
         aux++;
     /*}else{
         for(var i=0; i<letraID.length; i++){
@@ -298,6 +299,16 @@ function seleccionarLetra(id){
     }*/    
 }
 
+function cercano(){
+    var k=0;
+    for(var i=0; i<max; i++){
+        for(var j=0; j<max; j++){
+            matrizPos[k]=i+","+j;    
+            k++;
+        }
+    }
+}
+
 function verifica(){
     var encontro;
     var boton;
@@ -308,11 +319,11 @@ function verifica(){
         }
     }
     if(encontro===1){
+        alert("Encontraste la palabra: "+palabra);
         for(var k=0; k<palabra.length; k++){
             boton=document.getElementById(letraID[k]);
             boton.style.backgroundColor="#FF0000";
         }
-        alert("Encontraste la palabra: "+palabra);
     }
     else{
         alert("La palabra: "+palabra+" no está en la lista");
@@ -325,12 +336,21 @@ function verifica(){
     if(palabras2.length===0)
         alert("Ganaste");
     
+    /*for(var i=0; i<palabraVerifica.length; i++){
+        palabraVerifica.splice(i,1);
+    }*/
+    
+    /*var IDLength=letraID.length; 
+    for(var k=0; k<IDLength; k++){
+        letraID.splice(k,1);
+    }*/
+    
+    palabraVerifica=new Array();
+    letraID=new Array();
     aux=0;
     palabra="";
     encontro=0;
     blanca=0;
-    for(var i=0; i<palabraVerifica.length; i++)
-        palabraVerifica.splice(i,1);
 }
 
 function deselecciona(id){
@@ -343,6 +363,10 @@ function deselecciona(id){
             blanca=0;
         }
     }    
+}
+
+function compara(){
+    
 }
 
 function validarTituloyDescripcion(){
