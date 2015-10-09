@@ -14,17 +14,17 @@
             <div id="container">
                 <div class="row">
                     <div class="col-sm-9 col-md-9">
-                        <form>
+                        <form name="miFormulario" onsubmit="return validar()" method="post">
                             <label>TÍTULO</label>
-                            <input type="text" id="titulo" required>
+                            <input type="text" id="titulo" name="titulo" required>
                             <br><br><br>
                             <label>DESCRIPCIÓN</label>
-                            <input type="text" id="descripcion" required>
+                            <input type="text" id="descripcion" name="descripcion" required>
                             <br><br><br><br>
                             <label>NÚMERO DE PALABRAS</label>
                             <input type="number" id="numero" name="numero" min="1" max="15" required
                             onKeyUp="if(this.value>15){this.value='15';}else if(this.value<1){this.value='1';}">
-                            <input type="button" id="check" onclick="mostrar();" value="Insertar">
+                            <input type="button" id="check" onclick="validar();mostrar();" value="Insertar">
                         </form>
                     </div>
                     <div class="col-sm-3 col-md-3">

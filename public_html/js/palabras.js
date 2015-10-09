@@ -10,9 +10,9 @@ var matriz,max;
 var palabra="";
 var matrizPos=new Array();
 var cercanos=new Array();
-
-
+var valid=false;
 function mostrar(){
+  if(valid){
     var cantidad = parseInt(document.getElementById("numero").value);
     var textHTML = "";
     var buttonHTML = "";
@@ -22,8 +22,26 @@ function mostrar(){
     }
     
     document.getElementById("mostrar").innerHTML = textHTML;
-    buttonHTML+="<input type='submit' onclick='crearMatriz()' value='Crear'>";
+    buttonHTML+="<input type='submit' onclick='crearMatriz();validar();' value='Crear'>";
     document.getElementById("generar").innerHTML = buttonHTML;
+    }
+}
+
+function validar() {
+   valid=true;
+    var x = document.forms["miFormulario"]["titulo"].value;
+    var y = document.forms["miFormulario"]["descripcion"].value;
+    var z= document.forms["miFormulario"]["numero"].value;
+
+    if (x == null || x == "") {
+        alert("Debe tener nombre");
+        valid=false;
+    }
+    
+    if (y == null || y == "") {
+        alert("Debe tener descripción");
+        valid=false;
+    }
 }
 
 function crearMatriz() {
