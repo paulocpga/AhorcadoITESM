@@ -11,6 +11,7 @@ var palabra="";
 var matrizPos=new Array();
 var cercanos=new Array();
 var valid=false;
+var validSopa=false;
 function mostrar(){
   if(valid){
     var cantidad = parseInt(document.getElementById("numero").value);
@@ -22,7 +23,7 @@ function mostrar(){
     }
     
     document.getElementById("mostrar").innerHTML = textHTML;
-    buttonHTML+="<input type='submit' onclick='crearMatriz();validar();' value='Crear'>";
+    buttonHTML+="<input type='submit' onclick='validarSopa();crearMatriz();' value='Crear'>";
     document.getElementById("generar").innerHTML = buttonHTML;
     }
 }
@@ -31,20 +32,37 @@ function validar() {
    valid=true;
     var x = document.forms["miFormulario"]["titulo"].value;
     var y = document.forms["miFormulario"]["descripcion"].value;
-    var z= document.forms["miFormulario"]["numero"].value;
 
     if (x == null || x == "") {
         alert("Debe tener nombre");
         valid=false;
+        return false;
     }
     
     if (y == null || y == "") {
         alert("Debe tener descripción");
         valid=false;
+        return false;
+    }
+}
+
+function validarSopa() {
+    validSopa=true;
+    var cantidad = parseInt(document.getElementById("numero").value);
+    for(var i=0; i < cantidad; i++){
+       var p='#palabra'+i;
+       var x=$(p).val();
+       if (x == null || x == "") {
+        alert("no puede haber campos vacíos");
+        validSopa=false;
+        return false;
+    }
+    
     }
 }
 
 function crearMatriz() {
+    if(validSopa){
     var k = 0;
     var i = 0;
     //obtener número de palabras
@@ -89,6 +107,7 @@ function crearMatriz() {
     mostrarTitulo();
     mostrarLista();
     mostrarTabla();
+}
 }
 
 function mostrarTitulo(){
