@@ -9,76 +9,68 @@ var juega= 0;
 var matriz,max;
 var palabra="";
 var matrizPos=new Array();
+var cercanos=new Array();
 
 
 function mostrar(){
     var cantidad = parseInt(document.getElementById("numero").value);
-    var f1="<form>";
-    var f2="</form>";
-    var form="";
     var textHTML = "";
     var buttonHTML = "";
     
     for(i=0; i < cantidad; i++){
         textHTML += "<input type='text' id='palabra"+i+"' required><br/><br/>";
     }
-    //textHTML+="<input type='submit' onclick='crearMatriz()' value='Crear'>";
-    //form=f1+textHTML+f2;
+    
     document.getElementById("mostrar").innerHTML = textHTML;
     buttonHTML+="<input type='submit' onclick='crearMatriz()' value='Crear'>";
     document.getElementById("generar").innerHTML = buttonHTML;
-                
-                
 }
 
 function crearMatriz() {
-    //if(validarTituloyDescripcion()===1){
-    //if(juega===1){
-        var k = 0;
-        var i = 0;
-        //obtener número de palabras
-        var n = $("#numero").val();
+    var k = 0;
+    var i = 0;
+    //obtener número de palabras
+    var n = $("#numero").val();
 
-        //leer palabras
-        for(var con=0;con<n;con++){
-            var idPal='#palabra'+con;
-            palabras[con]=$(idPal).val();
-            if(k<palabras[con].length){
-                k=palabras[con].length;
-                i=con;
-            }     
-        } 
+    //leer palabras
+    for(var con=0;con<n;con++){
+        var idPal='#palabra'+con;
+        palabras[con]=$(idPal).val();
+        if(k<palabras[con].length){
+            k=palabras[con].length;
+            i=con;
+        }     
+    } 
 
-        //determinar tamaño de la matriz
-        max=2*palabras[i].length;
+    //determinar tamaño de la matriz
+    max=2*palabras[i].length;
 
-        //Crea arreglo 2D
-        matriz=new Array(max);
-        for(c=0;c<max;c++){
-            matriz[c]=new Array(max);
+    //Crea arreglo 2D
+    matriz=new Array(max);
+    for(c=0;c<max;c++){
+        matriz[c]=new Array(max);
+    }
+
+    //Llenar matriz con 0
+    for(var i=0; i<max;i++){
+        for(var j=0; j<max; j++){
+            matriz[i][j] = 0;
         }
+    }
 
-        //Llenar matriz con 0
-        for(var i=0; i<max;i++){
-            for(var j=0; j<max; j++){
-                matriz[i][j] = 0;
-            }
-        }
+    //separar palabra en caracteres
+    for(var j=0; j<palabras.length;j++){    
+        var palabra = $.trim(palabras[j]); 
+        acomodarPalabra(palabra);
+    }   
 
-        //separar palabra en caracteres
-        for(var j=0; j<palabras.length;j++){    
-            var palabra = $.trim(palabras[j]); 
-            acomodarPalabra(palabra);
-        }   
-
-        $("#container1").hide();
-        $("#container2").show();
-        palabras2=palabras;
-        llenarLetrasAleatorias();
-        mostrarTitulo();
-        mostrarLista();
-        mostrarTabla();
-    //}
+    $("#container1").hide();
+    $("#container2").show();
+    palabras2=palabras;
+    llenarLetrasAleatorias();
+    mostrarTitulo();
+    mostrarLista();
+    mostrarTabla();
 }
 
 function mostrarTitulo(){
@@ -103,14 +95,11 @@ function mostrarLista(){
 
 function acomodarPalabra(palabra){
     var palabrachars = new Array();
-    //var flag = 0;
     var tam = 0;    
     
-    //Parte la palabra
     for(var i=0; i<palabra.length; i++){
         palabrachars[i] = palabra.charAt(i).toUpperCase();
     }
-   
     var flag = 0;
     
     do{
@@ -118,7 +107,6 @@ function acomodarPalabra(palabra){
         var y = Math.floor(Math.random() * max-1) + 1;
         
         var orientacion = Math.floor(Math.random() * 4) + 1;
-        //var orientacion = 6;
         
         switch(orientacion){
             //hacia abajo
@@ -247,7 +235,7 @@ function mostrarTabla(){
     for (var i = 0; i < max; i++) {
         row = $(table[0].insertRow(-1));
         for (var j = 0; j < max; j++) {
-            var cell = $("<td><input id='"+(j+1)+""+(i+1)+"' type='submit' class='btn' value='"+matriz[i][j]+"' onClick='seleccionarLetra("+(j+1)+""+(i+1)+")'></input></td>");
+            var cell = $("<td><input id='"+(j+1)+","+(i+1)+"' type='submit' class='btn' value='"+matriz[i][j]+"' onClick='seleccionarLetra(\""+(j+1)+","+(i+1)+"\")'></input></td>");
             row.append(cell);
         }
     }
@@ -255,7 +243,7 @@ function mostrarTabla(){
     var dvTable = $("#table");
     dvTable.html("");
     dvTable.append(table);
-    cercano();
+    matPos();
 }
 
 function llenarLetrasAleatorias(){
@@ -273,39 +261,59 @@ function llenarLetrasAleatorias(){
 function seleccionarLetra(id){
     var boton = document.getElementById(id);
     
-    //if(letraID.length===0){
+    if(cercanos.length===0){
+        cercano(id);
         boton.style.backgroundColor="#FF0000";
         letraID[aux]=id;
         palabraVerifica[aux]=boton.value;
         palabra+=palabraVerifica[aux];
         aux++;
-    /*}else{
-        for(var i=0; i<letraID.length; i++){
-            if(letraID[i]===id){
-                boton.style.backgroundColor="LightBlue";
-                aux--;
-                letraID.splice(aux,1);
-                palabraVerifica.splice(aux,1);
-                palabra.substring(0,aux);
-            }else{
+    }else{
+        for(var i=0; i<cercanos.length; i++){
+            if(id===cercanos[i]){
+                cercano(id);
                 boton.style.backgroundColor="#FF0000";
                 letraID[aux]=id;
                 palabraVerifica[aux]=boton.value;
                 palabra+=palabraVerifica[aux];
-                letraID.splice(id,1);
                 aux++;
+                /*for(var j=0; j<letraID.length; j++){
+                    if(letraID[i]===id)
+                        boton.style.backgroundColor="LightBlue";
+                        aux--;
+                        letraID.splice(aux,1);
+                        palabraVerifica.splice(aux,1);
+                        palabra.substring(0,aux);
+                }*/
             }
         }
-    }*/    
+    }
 }
 
-function cercano(){
+function matPos(){
     var k=0;
     for(var i=0; i<max; i++){
         for(var j=0; j<max; j++){
             matrizPos[k]=i+","+j;    
             k++;
         }
+    }
+}
+
+function cercano(id){
+    var nid = id.split(',');
+    var cer = new Array();
+    cer[0]=[parseInt(nid[0])-1,parseInt(nid[1])-1];
+    cer[1]=[parseInt(nid[0])-1,parseInt(nid[1])];
+    cer[2]=[parseInt(nid[0])-1,parseInt(nid[1])+1];
+    cer[3]=[parseInt(nid[0]),parseInt(nid[1])-1];
+    cer[4]=[parseInt(nid[0]),parseInt(nid[1])+1];
+    cer[5]=[parseInt(nid[0])+1,parseInt(nid[1])-1];
+    cer[6]=[parseInt(nid[0])+1,parseInt(nid[1])];
+    cer[7]=[parseInt(nid[0])+1,parseInt(nid[1])+1];
+    
+    for(var i=0; i<cer.length; i++){
+        cercanos[i] = cer[i][0]+","+cer[i][1];
     }
 }
 
@@ -333,20 +341,14 @@ function verifica(){
         }
     }
     
-    if(palabras2.length===0)
+    if(palabras2.length===0){
         alert("Ganaste");
-    
-    /*for(var i=0; i<palabraVerifica.length; i++){
-        palabraVerifica.splice(i,1);
-    }*/
-    
-    /*var IDLength=letraID.length; 
-    for(var k=0; k<IDLength; k++){
-        letraID.splice(k,1);
-    }*/
+        window.location.href="puntaje.html";
+    }
     
     palabraVerifica=new Array();
     letraID=new Array();
+    cercanos=new Array();
     aux=0;
     palabra="";
     encontro=0;
@@ -363,10 +365,6 @@ function deselecciona(id){
             blanca=0;
         }
     }    
-}
-
-function compara(){
-    
 }
 
 function validarTituloyDescripcion(){
