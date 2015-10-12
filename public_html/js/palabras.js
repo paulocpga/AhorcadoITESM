@@ -12,6 +12,7 @@ var matrizPos=new Array();
 var cercanos=new Array();
 var valid=false;
 var validSopa=false;
+var repetidas=true;
 function mostrar(){
   if(valid){
     var cantidad = parseInt(document.getElementById("numero").value);
@@ -23,7 +24,7 @@ function mostrar(){
     }
     
     document.getElementById("mostrar").innerHTML = textHTML;
-    buttonHTML+="<input type='submit' onclick='validarSopa();crearMatriz();' value='Crear'>";
+    buttonHTML+="<input type='submit' onclick='validarSopa();validarRepeticiones();crearMatriz();' value='Crear'>";
     document.getElementById("generar").innerHTML = buttonHTML;
     }
 }
@@ -60,9 +61,27 @@ function validarSopa() {
     
     }
 }
+function validarRepeticiones() {
+    repetidas=false;
+    var cantidad = parseInt(document.getElementById("numero").value);
+    for(var i=0; i < cantidad-1; i++){
+       var p1='#palabra'+i;
+       var x=$(p1).val();
+      for(var j=i+1; j < cantidad; j++){
+       var p2='#palabra'+j;
+       var y=$(p2).val(); 
+       if (x == y) {
+        alert("no puede haber repeticiones");
+        repetidas=true;
+        return true;
+    }
+    
+    }
+    }
+}
 
 function crearMatriz() {
-    if(validSopa){
+    if(validSopa && !repetidas){
     var k = 0;
     var i = 0;
     //obtener número de palabras
@@ -404,15 +423,3 @@ function deselecciona(id){
     }    
 }
 
-function validarTituloyDescripcion(){
-    var titulo = document.getElementById("titulo");
-    var descripcion = document.getElementById("descripcion");
-    var mostrar = document.getElementById("mostrar");
-    
-    if(titulo!==""&&descripcion!==""&&mostrar!==""){
-        juega=1;
-    }else{
-        alert("Llena todos los campos por favor");
-        juega=0;
-    }
-}
