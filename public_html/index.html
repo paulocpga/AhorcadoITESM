@@ -7,7 +7,7 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/styles_index.css" rel="stylesheet" type="text/css"/>        
     </head>
-    <body>
+    <body>        
         <div class="container">
             <h1 >CREA TU SOPA DE LETRAS</h1>     
             <h2>...y después juégala</h2>
@@ -20,9 +20,99 @@
             <br><br>
             <!--<div class="col-md-1"></div>-->
             <div class="col-sm-1 col-md-1">                
-                <a class="btn btn-default orange-circle-button " href="sopa.html" role="button"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a>
+                <!-- Button trigger modal -->
+                <a data-toggle="modal" class="btn item i2" data-target="#iniciarsesion">Iniciar sesión</a>
+                <a data-toggle="modal" class="btn item i3" data-target="#registrar">Registrarte</a>
+            </div>
+            <div class="col-sm-1 col-md-1">                
+                <a style="display: none" class="btn btn-default orange-circle-button " href="sopa.html" role="button"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a>
             </div>    
             <!--<div class="col-sm-1 col-md-1"></div>-->            
+        </div>
+        
+        <!-- Modal Iniciar sesión -->
+        <div class="modal fade" id="iniciarsesion" tabindex="-1" role="dialog" aria-labelledby="iniciarsesionlabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="iniciarsesionlabel">Iniciar sesión</h4>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="IniciarSesion();">     
+                        <div class="form-group">
+                            <label id="emaill" for="emailinput">Correo electrónico</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input class="form-control" type="email" id="emailinput" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email" required > 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="contrasena" for="passw">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input class="form-control" type="password" name="password" id="passw" title="Contraseña" required>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-info btn-block" value="Ok" id="iniciar">
+                  </form>
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
+              </div>
+            </div>
+        </div>
+        
+        <!-- Modal Registrarse -->
+        <div class="modal fade" id="registrar" tabindex="-1" role="dialog" aria-labelledby="registrarlabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="registrarlabel">Registro</h4>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="Registrar();">                                            
+                        <div class="form-group">
+                            <label id="namelabel" for="name">Nombre</label> 
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input class="form-control" type="text" id="name" name="name" pattern="[A-Za-z]{4,}+\d+[A-Za-z]{4,}" title="Nombre" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="nicknamelabel" for="nickname">Nombre de usuario</label> 
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input class="form-control" type="text" id="nickname" name="name" pattern="[A-Za-z]{4,}+\d+[A-Za-z]{4,}" title="Nombre" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="emailabel" for="email">Correo electrónico</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <input class="form-control" type="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email" required > 
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="passlabel" for="password">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input class="form-control" type="password" name="password" id="password" title="Contraseña" required>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-info btn-block" value="Ok" id="crear">
+                  </form>
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
+              </div>
+            </div>
         </div>
         
         <!--<footer>

@@ -46,7 +46,15 @@ and open the template in the editor.
     #sopa{
         width: 95%;
         margin: 10px 2% 9px 2%;
-    }    
+    }   
+    
+    #iniciarsesionlabel, #registrarlabel{
+        font-size: 1.2em;        
+    }
+    
+    label{
+        font-size: 1em;
+    }
 }
 
 @media (min-width: 576px) and (max-width : 767px){    
@@ -89,6 +97,20 @@ and open the template in the editor.
         width: 70%;
         margin: 5px 15% 5px 15%;
     } 
+    
+    #iniciarsesionlabel, #registrarlabel{
+        font-size: 1.3em;        
+    }
+    
+    label{
+        font-size: 0.9em;
+    }
+    
+    .modal-dialog{
+        width: 70%;        
+        margin-left: 15%;
+        margin-right: 15%;
+    }
 }
 
 @media (min-width :768px) and (max-width : 991px){    
@@ -132,6 +154,20 @@ and open the template in the editor.
         width: 90%;
         margin: 10px 0 0 10px;
     } 
+    
+    #iniciarsesionlabel, #registrarlabel{
+        font-size: 1.4em;        
+    }
+    
+    label{
+        font-size: 1.1em;
+    }
+    
+    .modal-dialog{
+        width: 50%;        
+        margin-left: 25%;
+        margin-right: 25%;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -178,7 +214,21 @@ and open the template in the editor.
     #sopa{
         width: 90%;
         margin: 30px 5% 0 5%;
-    }    
+    }
+    
+    #iniciarsesionlabel, #registrarlabel{
+        font-size: 1.6em;        
+    }
+    
+    label{
+        font-size: 1.1em;
+    }
+    
+    .modal-dialog{
+        width: 50%;        
+        margin-left: 25%;
+        margin-right: 25%;
+    }
 }
 
 @media (min-width : 1200px){    
@@ -222,7 +272,21 @@ and open the template in the editor.
         margin: 10px 9% 10px 9%;
         border: 10px solid #660066;
         padding: 15px;
-    }     
+    }   
+    
+    #iniciarsesionlabel, #registrarlabel{
+        font-size: 1.8em;        
+    }
+    
+    label{
+        font-size: 1.3em;
+    }
+    
+    .modal-dialog{
+        width: 40%;        
+        margin-left: 30%;
+        margin-right: 30%;
+    }
 }
 
 body{
@@ -263,3 +327,53 @@ h2{
 	
 }
 /* ---- Boton de comenzar ------ */
+
+#iniciarsesionlabel, #registrarlabel{
+    text-align: center;
+}
+
+//Tomado de http://jsfiddle.net/Kx2k5/
+.item {
+    width: 150px;
+    height: 150px;
+    line-height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;    
+}
+
+.item:hover{
+    text-decoration: none;
+}
+
+.i2 { 
+    position: absolute; 
+    top: 10px; 
+    left: 35px;     
+    //border: 1px solid red;
+    background: #cc66ff;
+    padding: 44px 25px 25px 22px;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.i2:hover{
+    color: blue;
+}
+
+.i3 { 
+    position: absolute; 
+    top: 100px; 
+    left: 75px;     
+    //border: 1px solid blue;
+    background: #660066;
+    padding: 49px 35px 35px 34px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.i3:hover{
+    color: lightpink;
+}
