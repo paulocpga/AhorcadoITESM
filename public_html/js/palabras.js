@@ -13,21 +13,61 @@ var cercanos=new Array();
 var valid=false;
 var validSopa=false;
 var repetidas=true;
+var validLetras=false;
+var listaPalabras = new Array();
+var texto;
+var letrero;
+function vLetras(te,le){
+    var cantidad = parseInt(document.getElementById("numero").value);
+    for(var x=0; x < cantidad; x++){
+        //var p='#palabra'+j;
+        var tv=te.val();
+        var letters = /^[A-Za-z]+$/;
+        
+        if(tv.match(letters)){
+           // alert("cambio");
+            te.removeClass("error");
+            le.text("");
+            //return true;
+            
+        }else{
+            //alert("error");
+            te.addClass("error");
+            le.text("solo se pueden usar letras");
+           // return false;
+            
+        }
+    }
+    }
+
 function mostrar(){
   if(valid){
     var cantidad = parseInt(document.getElementById("numero").value);
     var textHTML = "";
     var buttonHTML = "";
-    
+   textHTML += " <form id='miLista'>";
     for(i=0; i < cantidad; i++){
-        textHTML += "<input type='text' id='palabra"+i+"' required><br/><br/>";
+        textHTML += "<div><input type='text' id='palabra"+i+"' required>";
+        textHTML += "<span id='aviso"+i+"'></span></div><br><br>";
     }
-    
+    textHTML += " </form>";
     document.getElementById("mostrar").innerHTML = textHTML;
-    buttonHTML+="<input type='submit' onclick='validarSopa();validarRepeticiones();crearMatriz();' value='Crear'>";
+    buttonHTML+="<input type='submit' onclick='validarSopa();validarRepeticiones();validarLetras();crearMatriz();' value='Crear'>";
     document.getElementById("generar").innerHTML = buttonHTML;
     }
+    var form=$("#miLista");
+    var t;
+    var l;
+     for(var j=0; j < cantidad; j++){
+         t='#palabra' +j;
+         l='#aviso'+j;
+      texto=$(t);
+     letrero=$(l);
+    //vLetras();
+    texto.change(vLetras(texto,letrero));
 }
+    }
+    
 
 function validar() {
    valid=true;
@@ -79,9 +119,27 @@ function validarRepeticiones() {
     }
     }
 }
+//*
+function validarLetras(){
+    validLetras=true;
+        var cantidad = parseInt(document.getElementById("numero").value);
+     var letters = /^[A-Za-z]+$/;
+     for(var i=0; i < cantidad; i++){
+       var p='#palabra'+i;
+       var x=$(p).val();
+       if(!x.match(letters)){
+           alert("Solo puedes usar letras");  
+           validLetras=false;
+           return false;
+       }
+    }
+     
+}//*/
+
+
 
 function crearMatriz() {
-    if(validSopa && !repetidas){
+    if(validSopa && !repetidas && validLetras){
     var k = 0;
     var i = 0;
     //obtener número de palabras
@@ -94,7 +152,8 @@ function crearMatriz() {
         if(k<palabras[con].length){
             k=palabras[con].length;
             i=con;
-        }     
+        } 
+        listaPalabras[con]=0;
     } 
 
     //determinar tamaño de la matriz
@@ -144,7 +203,18 @@ function mostrarTitulo(){
 function mostrarLista(){
      var listaHTML="";
      for(var i=0;i<palabras.length;i++){
+         // var p=palabra.toLowerCase();
+             alert("Probamos con "+listaPalabras[i]+" "+i);
+         
+         if(listaPalabras[i]===1){
+              
+             listaHTML+="<p><strike>"+palabras[i]+"</strike></p>";
+            
+         } if(listaPalabras[i]===0){
          listaHTML+="<p>"+palabras[i]+"</p>";
+       
+         }
+          
      }
      document.getElementById("lista").innerHTML = listaHTML;
 }
@@ -378,12 +448,16 @@ function verifica(){
     var boton;
     for(var j=0; j<palabras2.length; j++){
         if(palabras2[j].toUpperCase()===palabra){
+            listaPalabras[j]=1;
+            mostrarLista();
             encontro=1;
             palabras2.splice(j,1);
         }
     }
+    
     if(encontro===1){
         alert("Encontraste la palabra: "+palabra);
+        
         for(var k=0; k<palabra.length; k++){
             boton=document.getElementById(letraID[k]);
             boton.style.backgroundColor="#FF0000";
@@ -402,6 +476,7 @@ function verifica(){
         window.location.href="puntaje.html";
     }
     
+
     palabraVerifica=new Array();
     letraID=new Array();
     cercanos=new Array();

@@ -8,6 +8,11 @@ and open the template in the editor.
     Author     : Laura Schiatti
 */
 
+#miLista input.error{
+    background: #f8dbdb;
+    background-color: #e77776;
+}
+
 @media (max-width:459px) {
     h1{
         padding-top: 15%;

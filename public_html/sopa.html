@@ -23,8 +23,13 @@
                             <br><br><br><br>
                             <label>NÚMERO DE PALABRAS</label>
                             <input type="number" id="numero" name="numero" min="1" max="15" value="1" required
-                            onKeyUp="if(this.value>15){this.value='15';}else if(this.value<1){this.value='1';}">
-                            <input type="button" id="check" onclick="validar();mostrar();" value="Insertar">
+                                   onKeyUp="if (this.value > 15) {
+                                               this.value = '15';
+                                           } else if (this.value < 1) {
+                                               this.value = '1';
+                                           }">
+                            <input type="button" id="check" onclick="validar();
+                                    mostrar();" value="Insertar">
                         </form>
                     </div>
                     <div class="col-sm-3 col-md-3">
@@ -40,8 +45,9 @@
                 </div>    
             </div>
         </div>
-        
+
         <div id="container2" style="display:none">
+            <div id="basicUsage">00:00:00</div>
             <div class="row">
                 <div class="col-md-12 col-sm-12" id="sopaT"></div>
             </div> 
@@ -60,14 +66,18 @@
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-2">
-                    <button id="verificar" onclick="verifica()"><span class="glyphicon glyphicon-check"></span></button>
+                    <button id="verificar" onclick="verifica();"><span class="glyphicon glyphicon-check"></span></button>
                 </div>
                 <div class="col-md-5"></div>
             </div>
         </div>
-        
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.validate.js"></script>
+        <script type="text/javascript" src="js/additional-methods.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>        
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/palabras.js"></script>        
+        <script type="text/javascript" src="js/palabras.js"></script>   
+              
     </body>
 </html>
